@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO y Marketing: Meta Etiquetas Open Graph para compartir en WhatsApp/LinkedIn -->
+    <title>Directorio de Proveedores | La Movida de SST DAO Network</title>
+    <meta name="description" content="Encuentra los mejores proveedores de Seguridad y Salud en el Trabajo en Venezuela. Directorio oficial de La Movida SST.">
+    <meta property="og:title" content="Directorio La Movida SST - Encuentra Proveedores Calificados">
+    <meta property="og:description" content="Conectamos empresas con profesionales en Seguridad y Salud Laboral en Venezuela. Busca por estado y categoría.">
+    <meta property="og:image" content="https://assets.poap.xyz/f7d50791-1f25-47f7-978c-b2c9fd7ad13d.png">
+    <meta property="og:url" content="https://www.movidasst.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://assets.poap.xyz/f7d50791-1f25-47f7-978c-b2c9fd7ad13d.png">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            DEFAULT: '#00b050',
+                            dark: '#009040',
+                            light: '#e6f7ee'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Iconos Lucide -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Optimizaciones de renderizado */
+        body { 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        .card-hover:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.15); 
+        }
+        /* Clase para animación de expansión de texto */
+        .desc-expanded {
+            display: block !important;
+            -webkit-line-clamp: unset !important;
+        }
+        .line-clamp-3 {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        /* Scrollbar personalizado sutil */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #00b050; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen flex flex-col font-sans text-gray-800 selection:bg-brand-light selection:text-brand-dark">
+
+    <!-- Navbar -->
+    <nav class="bg-white/95 backdrop-blur-sm text-gray-800 shadow-sm sticky top-0 z-50 border-b border-gray-100 transition-all">
+        <div class="container mx-auto px-4 py-3 flex flex-col md:flex-row justify-between items-center">
+            <a href="https://www.movidasst.com" target="_blank" rel="noopener noreferrer" class="flex items-center space-x-4 mb-4 md:mb-0 group">
+                <div class="relative rounded-full border-2 border-gray-50 p-1 bg-white shadow-sm group-hover:border-brand transition duration-300">
+                    <img src="https://assets.poap.xyz/f7d50791-1f25-47f7-978c-b2c9fd7ad13d.png" alt="Logo La Movida SST" class="w-12 h-12 md:w-14 md:h-14 object-contain rounded-full group-hover:scale-105 transition-transform duration-300">
+                </div>
+                <div class="flex flex-col">
+                    <h1 class="text-xl md:text-2xl font-bold tracking-tight leading-none text-gray-900">
+                        La Movida de SST
+                        <span class="block text-xs md:text-sm font-semibold text-brand tracking-wide mt-0.5">DAO Network</span>
+                    </h1>
+                </div>
+            </a>
+            
+            <div class="flex flex-wrap justify-center md:justify-end items-center gap-3 md:gap-4">
+                 <!-- Enlace Web (Oculto en móviles muy pequeños) -->
+                 <a href="https://www.movidasst.com" target="_blank" rel="noopener noreferrer" class="hidden lg:flex items-center text-sm font-medium text-gray-500 hover:text-brand transition py-2">
+                    <i data-lucide="globe" class="w-4 h-4 inline mr-2 opacity-70"></i> www.movidasst.com
+                </a>
+                
+                <!-- Botón Canal WhatsApp -->
+                <a href="https://whatsapp.com/channel/0029Va0mlH5Jf05mrcCz8r3e" target="_blank" rel="noopener noreferrer" class="bg-green-50 text-[#128C7E] border border-[#25D366]/30 hover:bg-[#25D366] hover:text-white hover:border-[#25D366] font-semibold py-2 px-4 rounded-full transition duration-300 flex items-center text-xs md:text-sm group" title="Únete a nuestra comunidad en WhatsApp">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 mr-2"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path></svg>
+                    Canal Oficial
+                </a>
+
+                <!-- Botón Registro -->
+                <a href="https://forms.gle/j5UUa6zuKBRG4EVG8" target="_blank" rel="noopener noreferrer" class="bg-brand hover:bg-brand-dark text-white font-bold py-2.5 px-6 rounded-full shadow-md hover:shadow-lg transition duration-300 flex items-center text-sm transform hover:-translate-y-0.5 focus:ring-2 focus:ring-offset-2 focus:ring-brand">
+                    <i data-lucide="plus-circle" class="w-5 h-5 mr-2"></i> Regístrate
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero & Search Section -->
+    <div class="relative bg-white border-b border-gray-200 py-12 md:py-16 overflow-hidden">
+        <!-- Decoración de fondo sutil -->
+        <div class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-brand-light/40 via-transparent to-transparent pointer-events-none"></div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-10 max-w-3xl mx-auto">
+                <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 leading-tight mb-4">
+                    Directorio de Proveedores <span class="text-brand bg-clip-text text-transparent bg-gradient-to-r from-brand to-brand-dark">SST</span>
+                </h2>
+                <p class="text-lg text-gray-600 leading-relaxed">
+                    Facilitamos la búsqueda y conexión con proveedores de servicios en Seguridad y Salud Laboral en Venezuela.
+                </p>
+            </div>
+            
+            <div class="bg-white p-2 md:p-3 rounded-2xl shadow-xl border border-gray-100 max-w-4xl mx-auto flex flex-col md:flex-row gap-3">
+                <!-- Buscador -->
+                <div class="relative flex-grow group">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="text-gray-400 w-5 h-5 group-focus-within:text-brand transition-colors"></i>
+                    </div>
+                    <input type="text" id="searchInput" placeholder="Buscar proveedor, servicio o palabra clave..." class="w-full pl-11 pr-4 py-3 rounded-xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-brand/20 text-gray-700 placeholder-gray-400 transition-all outline-none">
+                </div>
+                
+                <!-- Filtros -->
+                <div class="flex flex-col sm:flex-row gap-3 md:w-5/12">
+                    <div class="relative w-full">
+                        <select id="categoryFilter" class="w-full pl-4 pr-10 py-3 rounded-xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-brand/20 appearance-none cursor-pointer text-gray-700 truncate outline-none">
+                            <option value="">Categorías</option>
+                        </select>
+                        <i data-lucide="chevron-down" class="absolute right-4 top-3.5 text-gray-400 w-4 h-4 pointer-events-none"></i>
+                    </div>
+
+                    <div class="relative w-full">
+                        <select id="stateFilter" class="w-full pl-4 pr-10 py-3 rounded-xl border-none bg-gray-50 focus:bg-white focus:ring-2 focus:ring-brand/20 appearance-none cursor-pointer text-gray-700 truncate outline-none">
+                            <option value="">Estados</option>
+                        </select>
+                        <i data-lucide="map-pin" class="absolute right-4 top-3.5 text-gray-400 w-4 h-4 pointer-events-none"></i>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Status Bar -->
+            <div class="text-center mt-6 flex justify-center items-center gap-3 min-h-[24px]">
+                <span id="resultsCount" class="text-xs font-medium text-gray-400 uppercase tracking-wider">Inicializando...</span>
+                <span id="liveBadge" class="hidden flex h-2 w-2 relative">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Resultados -->
+    <main class="container mx-auto px-4 py-12 flex-grow bg-slate-50">
+        <div id="providersGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden">
+            <!-- Cards inyectadas vía JS -->
+        </div>
+
+        <!-- Loading Spinner -->
+        <div id="loadingState" class="flex flex-col justify-center items-center py-24">
+            <div class="relative">
+                <div class="w-16 h-16 border-4 border-gray-200 border-t-brand rounded-full animate-spin"></div>
+                <div class="absolute top-0 left-0 w-full h-full flex items-center justify-center">
+                    <div class="w-2 h-2 bg-brand rounded-full"></div>
+                </div>
+            </div>
+            <p class="text-gray-500 text-sm font-medium mt-4 animate-pulse">Sincronizando directorio...</p>
+        </div>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden flex flex-col items-center justify-center py-20 text-center">
+            <div class="bg-white p-6 rounded-full shadow-sm mb-6">
+                <i data-lucide="search-x" class="w-12 h-12 text-gray-300"></i>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">No se encontraron resultados</h3>
+            <p class="text-gray-500 max-w-md mx-auto">Intenta usar términos más generales o limpia los filtros seleccionados.</p>
+            <button onclick="resetFilters()" class="mt-6 text-brand font-medium hover:underline text-sm">Limpiar búsqueda</button>
+        </div>
+
+        <!-- Error Connection -->
+        <div id="connectionError" class="hidden text-center py-10 px-4 max-w-lg mx-auto">
+            <div class="bg-white border border-red-100 text-red-800 px-6 py-8 rounded-2xl shadow-lg">
+                <i data-lucide="wifi-off" class="w-12 h-12 mx-auto mb-4 text-red-400"></i>
+                <h3 class="font-bold text-xl mb-2">Conexión Interrumpida</h3>
+                <p class="text-sm text-gray-600 mb-6">No pudimos conectar con la base de datos. Por favor, verifica tu conexión.</p>
+                <button onclick="location.reload()" class="bg-gray-900 hover:bg-black text-white font-bold py-3 px-8 rounded-full text-sm transition shadow-lg">
+                    Reintentar
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-12 mt-auto relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-dark via-brand to-brand-dark"></div>
+        
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <div class="mb-8">
+                 <h2 class="text-xl font-bold text-white tracking-tight">La Movida de SST <span class="text-brand">DAO Network</span></h2>
+                 <p class="text-xs text-gray-500 uppercase tracking-widest mt-2">De la reacción a la prevención</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto mb-10 p-6 bg-gray-800/40 rounded-2xl border border-gray-700/50 backdrop-blur-sm">
+                <h4 class="text-xs font-bold text-brand uppercase mb-3 flex items-center justify-center gap-2">
+                    <i data-lucide="info" class="w-4 h-4"></i> Descargo de Responsabilidad
+                </h4>
+                <p class="text-[11px] leading-relaxed text-gray-400 text-justify md:text-center font-light">
+                    La Movida de SST DAO Network actúa exclusivamente como directorio informativo. <strong>No tenemos vinculación comercial, laboral ni legal con las empresas listadas.</strong> No garantizamos la calidad de los servicios ni asumimos responsabilidad por las contrataciones. La verificación de credenciales y registros legales es responsabilidad exclusiva del usuario contratante.
+                </p>
+            </div>
+
+            <div class="flex justify-center gap-6 text-sm mb-8 border-t border-gray-800 pt-8">
+                 <a href="https://www.movidasst.com" target="_blank" class="hover:text-brand transition">Web Principal</a>
+                 <a href="https://forms.gle/j5UUa6zuKBRG4EVG8" target="_blank" class="hover:text-brand transition">Unirme al Directorio</a>
+            </div>
+
+            <p class="text-xs text-gray-600 mb-2">&copy; 2025 La Movida de SST DAO Network.</p>
+            <div class="text-[10px] text-gray-700 mt-2">
+                Desarrollado por <span class="font-medium text-gray-500">David Linares Brea</span>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const API_URL = "https://script.google.com/macros/s/AKfycbwrsqwZ-I9btjvP699nDOkNUaNjjMQbDeTkOfwTztjfKsA8gmAlZi30qCgaEudic8VU/exec"; 
+        
+        let allProviders = [];
+
+        // 1. SEGURIDAD: Función para sanitizar HTML (Anti-XSS)
+        function escapeHtml(text) {
+            if (!text) return "";
+            const map = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#039;'
+            };
+            return text.toString().replace(/[&<>"']/g, function(m) { return map[m]; });
+        }
+
+        // 2. SEGURIDAD: Validar URLs
+        function cleanUrl(url) {
+            if (!url) return '#';
+            let safeUrl = url.toString().trim();
+            if (/^javascript:/i.test(safeUrl)) return '#';
+            if (!safeUrl.startsWith('http') && !safeUrl.startsWith('//') && !safeUrl.startsWith('mailto:') && !safeUrl.startsWith('tel:')) {
+                return 'https://' + safeUrl;
+            }
+            return escapeHtml(safeUrl);
+        }
+
+        // 3. PERFORMANCE: Debounce
+        function debounce(func, wait) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), wait);
+            };
+        }
+
+        // 4. UX: Toggle descripción
+        window.toggleDesc = function(id, btn) {
+            const textElement = document.getElementById(id);
+            const isExpanded = textElement.classList.contains('desc-expanded');
+            
+            if (isExpanded) {
+                textElement.classList.remove('desc-expanded');
+                textElement.classList.add('line-clamp-3');
+                btn.innerHTML = 'Leer más <i data-lucide="chevron-down" class="w-3 h-3 ml-1"></i>';
+            } else {
+                textElement.classList.remove('line-clamp-3');
+                textElement.classList.add('desc-expanded');
+                btn.innerHTML = 'Mostrar menos <i data-lucide="chevron-up" class="w-3 h-3 ml-1"></i>';
+            }
+            lucide.createIcons();
+        }
+
+        async function init() {
+            lucide.createIcons();
+            
+            // SIN CACHÉ: Consulta directa en tiempo real
+            try {
+                console.log("Consultando API en tiempo real...");
+                const response = await fetch(API_URL);
+                if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                const data = await response.json();
+                
+                if (!Array.isArray(data)) throw new Error("Formato inválido");
+
+                allProviders = data;
+                renderApp(allProviders);
+
+            } catch (error) {
+                console.error("Error de conexión:", error);
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('resultsCount').textContent = "Error";
+                document.getElementById('connectionError').classList.remove('hidden');
+            }
+        }
+
+        function renderApp(data) {
+            document.getElementById('loadingState').classList.add('hidden');
+            document.getElementById('liveBadge').classList.remove('hidden');
+            populateFilters();
+            renderProviders(data);
+            updateCount(data.length);
+        }
+
+        function renderProviders(providers) {
+            const grid = document.getElementById('providersGrid');
+            const empty = document.getElementById('emptyState');
+            grid.innerHTML = '';
+
+            if (!providers || providers.length === 0) {
+                grid.classList.add('hidden');
+                empty.classList.remove('hidden');
+                updateCount(0);
+                return;
+            }
+
+            grid.classList.remove('hidden');
+            empty.classList.add('hidden');
+
+            providers.forEach((p, index) => {
+                const name = escapeHtml(p.empresa || "Empresa");
+                const cat = escapeHtml(p.categoria || "Servicios SST");
+                const loc = escapeHtml(p.estado || "Nacional");
+                const desc = escapeHtml(p.descripcion || "");
+                const rif = escapeHtml(p.rif || "");
+                const contacto = escapeHtml(p.contacto || ""); // Nuevo campo Contacto
+                const logoUrl = (p.logo && !/^javascript:/i.test(p.logo)) ? p.logo : null;
+                const hasInpsasel = p.registro_inpsasel && String(p.registro_inpsasel).toLowerCase().includes('si');
+                const hasSencamer = p.registro_sencamer && String(p.registro_sencamer).toLowerCase().includes('si');
+
+                const isLongDesc = desc.length > 130;
+                const descId = `desc-${index}`;
+
+                const card = document.createElement('div');
+                card.className = "bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col card-hover transition-all duration-300 relative group hover:border-brand-light";
+                
+                card.innerHTML = `
+                    <div class="p-6 flex-grow flex flex-col">
+                        <div class="flex items-start justify-between mb-5">
+                            <div class="w-20 h-20 bg-white rounded-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0 relative shadow-sm p-2 transition-all group-hover:shadow-md">
+                                ${logoUrl 
+                                    ? `<img src="${logoUrl}" alt="Logo ${name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<i data-lucide=\'building-2\' class=\'text-gray-300 w-8 h-8\'></i>'; lucide.createIcons();">` 
+                                    : `<i data-lucide="building-2" class="text-gray-300 w-10 h-10 opacity-50"></i>`
+                                }
+                            </div>
+                            <div class="flex flex-col items-end pl-2 min-w-[100px]">
+                                ${ (hasInpsasel || hasSencamer) ? `<span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1.5">Registrado</span>` : '' }
+                                <div class="flex flex-col gap-1.5 items-end">
+                                    ${hasInpsasel ? `<span class="badge-cert bg-green-50 text-green-700 border border-green-200" title="Registro Inpsasel"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1 text-green-600"></i> INPSASEL</span>` : ''}
+                                    ${hasSencamer ? `<span class="badge-cert bg-blue-50 text-blue-700 border border-blue-200" title="Registro Sencamer"><i data-lucide="badge-check" class="w-3.5 h-3.5 mr-1 text-blue-600"></i> SENCAMER</span>` : ''}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                             <span class="text-[10px] font-bold tracking-wider text-brand uppercase bg-brand-light px-2.5 py-1 rounded-md inline-block mb-2">${cat.split(',')[0]}</span>
+                            <h3 class="font-bold text-gray-900 text-lg leading-snug group-hover:text-brand transition-colors line-clamp-2">${name}</h3>
+                            
+                            ${rif ? `
+                                <div class="flex items-center mt-1.5 text-xs text-gray-400 font-medium font-mono tracking-tight" title="Registro de Información Fiscal">
+                                    <i data-lucide="file-badge-2" class="w-3.5 h-3.5 mr-1.5 opacity-70"></i>
+                                    ${rif}
+                                </div>
+                            ` : ''}
+                        </div>
+                        
+                        <!-- Bloque de Ubicación y Contacto -->
+                        <div class="flex flex-col gap-2 mb-4 pt-1">
+                            <div class="flex items-center text-gray-500 text-sm font-medium">
+                                <i data-lucide="map-pin" class="w-4 h-4 mr-2 text-gray-400"></i>
+                                ${loc}
+                            </div>
+                            ${contacto ? `
+                                <div class="flex items-center text-gray-700 text-sm font-medium">
+                                    <i data-lucide="user-circle-2" class="w-4 h-4 mr-2 text-brand opacity-80"></i>
+                                    <span class="text-gray-400 font-normal mr-1">Contacto:</span>
+                                    ${contacto}
+                                </div>
+                            ` : ''}
+                        </div>
+
+                        <div class="relative mt-auto">
+                            <p id="${descId}" class="text-gray-600 text-sm ${isLongDesc ? 'line-clamp-3' : ''} leading-relaxed font-light transition-all duration-300">
+                                ${desc ? desc : '<span class="italic text-gray-400">Sin descripción disponible.</span>'}
+                            </p>
+                            ${isLongDesc ? `
+                                <button onclick="toggleDesc('${descId}', this)" class="text-xs text-brand font-semibold mt-2 hover:text-brand-dark focus:outline-none flex items-center transition-colors">
+                                    Leer más <i data-lucide="chevron-down" class="w-3 h-3 ml-1"></i>
+                                </button>
+                            ` : ''}
+                        </div>
+                    </div>
+
+                    <div class="bg-gray-50/80 px-6 py-4 border-t border-gray-100 flex justify-between items-center mt-auto">
+                        <span class="text-xs font-medium text-gray-400">Contactar:</span>
+                        <div class="flex space-x-2 justify-end">
+                            ${p.whatsapp ? `<a href="${cleanUrl(p.whatsapp)}" target="_blank" rel="noopener noreferrer" class="social-btn bg-green-100 text-green-600 hover:bg-green-600 hover:text-white"><i data-lucide="message-circle" class="w-4.5 h-4.5"></i></a>` : ''}
+                            ${p.instagram ? `<a href="${cleanUrl(p.instagram)}" target="_blank" rel="noopener noreferrer" class="social-btn bg-pink-100 text-pink-600 hover:bg-pink-600 hover:text-white"><i data-lucide="instagram" class="w-4.5 h-4.5"></i></a>` : ''}
+                            ${p.web ? `<a href="${cleanUrl(p.web)}" target="_blank" rel="noopener noreferrer" class="social-btn bg-blue-100 text-blue-600 hover:bg-blue-600 hover:text-white"><i data-lucide="globe" class="w-4.5 h-4.5"></i></a>` : ''}
+                            ${p.email ? `<a href="mailto:${escapeHtml(p.email)}" class="social-btn bg-gray-100 text-gray-600 hover:bg-gray-700 hover:text-white"><i data-lucide="mail" class="w-4.5 h-4.5"></i></a>` : ''}
+                        </div>
+                    </div>
+                `;
+                
+                const socialBtns = card.querySelectorAll('.social-btn');
+                socialBtns.forEach(btn => btn.className += " flex items-center justify-center w-9 h-9 rounded-full transition-all duration-300 shadow-sm hover:shadow-md");
+
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
+
+        function populateFilters() {
+            const categories = new Set();
+            const states = new Set();
+
+            allProviders.forEach(p => {
+                if (p.categoria) p.categoria.split(',').forEach(c => categories.add(c.trim()));
+                if (p.estado) states.add(p.estado.trim());
+            });
+
+            const catSelect = document.getElementById('categoryFilter');
+            const stateSelect = document.getElementById('stateFilter');
+            
+            // Limpieza robusta de filtros (excepto primera opción)
+            while (catSelect.options.length > 1) catSelect.remove(1);
+            while (stateSelect.options.length > 1) stateSelect.remove(1);
+            
+            const addOption = (select, value) => {
+                const opt = document.createElement('option');
+                opt.value = value;
+                opt.textContent = value;
+                select.appendChild(opt);
+            };
+
+            Array.from(categories).sort().forEach(c => c && addOption(catSelect, c));
+            Array.from(states).sort().forEach(s => s && addOption(stateSelect, s));
+        }
+
+        const handleFilter = debounce(() => {
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            const cat = document.getElementById('categoryFilter').value;
+            const state = document.getElementById('stateFilter').value;
+
+            const filtered = allProviders.filter(p => {
+                const matchesSearch = (p.empresa || '').toLowerCase().includes(search) || 
+                                      (p.descripcion || '').toLowerCase().includes(search) ||
+                                      (p.rif || '').toLowerCase().includes(search);
+                const matchesCat = cat === "" || (p.categoria || '').includes(cat);
+                const matchesState = state === "" || (p.estado || '') === state;
+                return matchesSearch && matchesCat && matchesState;
+            });
+
+            renderProviders(filtered);
+            updateCount(filtered.length);
+        }, 300); 
+
+        function updateCount(count) {
+            const badge = document.getElementById('resultsCount');
+            badge.innerHTML = count > 0 
+                ? `<span class="font-bold text-gray-900">${count}</span> Aliados Disponibles` 
+                : "Buscando...";
+        }
+        
+        function resetFilters() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('categoryFilter').value = '';
+            document.getElementById('stateFilter').value = '';
+            handleFilter();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', handleFilter);
+        document.getElementById('categoryFilter').addEventListener('change', handleFilter);
+        document.getElementById('stateFilter').addEventListener('change', handleFilter);
+
+        init();
+
+    </script>
+</body>
+</html>
