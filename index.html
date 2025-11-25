@@ -67,6 +67,23 @@
         ::-webkit-scrollbar-track { background: #f1f1f1; }
         ::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
         ::-webkit-scrollbar-thumb:hover { background: #00b050; }
+
+        /* NUEVO ESTILO MEJORADO PARA BADGES DE REGISTRO */
+        .badge-registry {
+            display: inline-flex;
+            align-items: center;
+            padding: 2px 8px;
+            border-radius: 9999px; /* Píldora completa */
+            font-size: 0.60rem;    /* Texto compacto */
+            font-weight: 700;
+            letter-spacing: 0.025em;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.05); /* Sombra muy sutil */
+            transition: all 0.2s;
+            cursor: default;
+        }
+        .badge-registry:hover {
+            transform: scale(1.02);
+        }
     </style>
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col font-sans text-gray-800 selection:bg-brand-light selection:text-brand-dark">
@@ -233,6 +250,11 @@
     <script>
         const API_URL = "https://script.google.com/macros/s/AKfycbwrsqwZ-I9btjvP699nDOkNUaNjjMQbDeTkOfwTztjfKsA8gmAlZi30qCgaEudic8VU/exec"; 
         
+        // CONFIGURACIÓN DE CACHÉ (30 Minutos)
+        const CACHE_KEY = 'movidaSST_data';
+        const CACHE_TIME_KEY = 'movidaSST_timestamp';
+        const CACHE_DURATION = 1000 * 60 * 30; // 30 Minutos en milisegundos
+
         let allProviders = [];
 
         // 1. SEGURIDAD: Función para sanitizar HTML (Anti-XSS)
@@ -288,9 +310,26 @@
         async function init() {
             lucide.createIcons();
             
-            // SIN CACHÉ: Consulta directa en tiempo real
+            // LÓGICA DE CACHÉ INTELIGENTE
+            const cachedData = localStorage.getItem(CACHE_KEY);
+            const cachedTime = localStorage.getItem(CACHE_TIME_KEY);
+            const now = new Date().getTime();
+
+            // Si hay caché y es válido (menos de 30 mins)
+            if (cachedData && cachedTime && (now - cachedTime < CACHE_DURATION)) {
+                try {
+                    console.log("Cargando desde caché local (Rápido)...");
+                    allProviders = JSON.parse(cachedData);
+                    renderApp(allProviders);
+                    return; // Terminamos, no llamamos a la API
+                } catch (e) {
+                    console.warn("Error leyendo caché, forzando recarga.");
+                }
+            }
+
+            // Si no hay caché o expiró, llamamos a la API
             try {
-                console.log("Consultando API en tiempo real...");
+                console.log("Consultando API (Actualizando datos)...");
                 const response = await fetch(API_URL);
                 if (!response.ok) throw new Error(`HTTP ${response.status}`);
                 const data = await response.json();
@@ -298,13 +337,26 @@
                 if (!Array.isArray(data)) throw new Error("Formato inválido");
 
                 allProviders = data;
+                
+                // Guardamos en caché por 30 mins
+                localStorage.setItem(CACHE_KEY, JSON.stringify(data));
+                localStorage.setItem(CACHE_TIME_KEY, now.toString());
+
                 renderApp(allProviders);
 
             } catch (error) {
                 console.error("Error de conexión:", error);
-                document.getElementById('loadingState').classList.add('hidden');
-                document.getElementById('resultsCount').textContent = "Error";
-                document.getElementById('connectionError').classList.remove('hidden');
+                
+                // Si falla la API pero tenemos caché vieja, la usamos como respaldo de emergencia
+                if (cachedData) {
+                    console.warn("Usando caché expirada como respaldo.");
+                    allProviders = JSON.parse(cachedData);
+                    renderApp(allProviders);
+                } else {
+                    document.getElementById('loadingState').classList.add('hidden');
+                    document.getElementById('resultsCount').textContent = "Error";
+                    document.getElementById('connectionError').classList.remove('hidden');
+                }
             }
         }
 
@@ -340,44 +392,69 @@
                 const contacto = escapeHtml(p.contacto || ""); 
                 const logoUrl = (p.logo && !/^javascript:/i.test(p.logo)) ? p.logo : null;
                 
-                // --- NUEVA LÓGICA DE REGISTROS ---
+                // --- REGISTROS ---
                 const hasInpsasel = p.registro_inpsasel && String(p.registro_inpsasel).toLowerCase().includes('si');
                 const hasSencamer = p.registro_sencamer && String(p.registro_sencamer).toLowerCase().includes('si');
-                const hasInces = p.registro_inces && String(p.registro_inces).toLowerCase().includes('si'); // Nuevo
-                const hasMppe = p.registro_mppe && String(p.registro_mppe).toLowerCase().includes('si');     // Nuevo
+                const hasInces = p.registro_inces && String(p.registro_inces).toLowerCase().includes('si');
+                const hasMppe = p.registro_mppe && String(p.registro_mppe).toLowerCase().includes('si');
 
-                // Verificar si tiene AL MENOS un registro para mostrar el título "Registrado"
+                // Verificar si tiene AL MENOS un registro
                 const hasAnyRegistry = hasInpsasel || hasSencamer || hasInces || hasMppe;
 
                 const isLongDesc = desc.length > 130;
                 const descId = `desc-${index}`;
+
+                // Generar HTML de categorías múltiples
+                const categoriesHtml = cat.split(',').map(c => {
+                    const cleanCat = c.trim();
+                    if (!cleanCat) return '';
+                    return `<span class="text-[10px] font-bold tracking-wide text-brand-dark uppercase bg-brand-light/70 px-2 py-1 rounded-md border border-brand/10 whitespace-nowrap">${cleanCat}</span>`;
+                }).join('');
 
                 const card = document.createElement('div');
                 card.className = "bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden flex flex-col card-hover transition-all duration-300 relative group hover:border-brand-light";
                 
                 card.innerHTML = `
                     <div class="p-6 flex-grow flex flex-col">
-                        <div class="flex items-start justify-between mb-5">
+                        <div class="flex items-start justify-between mb-4">
+                            <!-- Logo (Izquierda) -->
                             <div class="w-20 h-20 bg-white rounded-xl flex items-center justify-center border border-gray-100 overflow-hidden shrink-0 relative shadow-sm p-2 transition-all group-hover:shadow-md">
                                 ${logoUrl 
                                     ? `<img src="${logoUrl}" alt="Logo ${name}" class="w-full h-full object-contain" onerror="this.onerror=null; this.parentNode.innerHTML='<i data-lucide=\'building-2\' class=\'text-gray-300 w-8 h-8\'></i>'; lucide.createIcons();">` 
                                     : `<i data-lucide="building-2" class="text-gray-300 w-10 h-10 opacity-50"></i>`
                                 }
                             </div>
-                            <div class="flex flex-col items-end pl-2 min-w-[100px]">
-                                ${ hasAnyRegistry ? `<span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1.5">Registrado</span>` : '' }
+
+                            <!-- Registros (Derecha - Diseño Nuevo) -->
+                            <div class="flex flex-col items-end pl-3 min-w-[110px]">
+                                ${ hasAnyRegistry ? `<span class="text-[9px] text-gray-400 font-bold uppercase tracking-widest mb-2 opacity-80">Registros</span>` : '' }
                                 <div class="flex flex-col gap-1.5 items-end">
-                                    ${hasInpsasel ? `<span class="badge-cert bg-green-50 text-green-700 border border-green-200" title="Registro Inpsasel"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1 text-green-600"></i> INPSASEL</span>` : ''}
-                                    ${hasSencamer ? `<span class="badge-cert bg-blue-50 text-blue-700 border border-blue-200" title="Registro Sencamer"><i data-lucide="badge-check" class="w-3.5 h-3.5 mr-1 text-blue-600"></i> SENCAMER</span>` : ''}
-                                    
-                                    <!-- NUEVOS BADGES -->
-                                    ${hasInces ? `<span class="badge-cert bg-amber-50 text-amber-700 border border-amber-200" title="Registro INCES"><i data-lucide="book-open-check" class="w-3.5 h-3.5 mr-1 text-amber-600"></i> INCES</span>` : ''}
-                                    ${hasMppe ? `<span class="badge-cert bg-violet-50 text-violet-700 border border-violet-200" title="Registro Ministerio de Educación"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 mr-1 text-violet-600"></i> MPPE</span>` : ''}
+                                    ${hasInpsasel ? `
+                                        <span class="badge-registry bg-green-50 text-green-700 ring-1 ring-inset ring-green-600/20" title="Registro Inpsasel">
+                                            <i data-lucide="check-circle-2" class="w-3 h-3 mr-1 text-green-600"></i> INPSASEL
+                                        </span>` : ''}
+                                    ${hasSencamer ? `
+                                        <span class="badge-registry bg-blue-50 text-blue-700 ring-1 ring-inset ring-blue-700/20" title="Registro Sencamer">
+                                            <i data-lucide="badge-check" class="w-3 h-3 mr-1 text-blue-600"></i> SENCAMER
+                                        </span>` : ''}
+                                    ${hasInces ? `
+                                        <span class="badge-registry bg-amber-50 text-amber-700 ring-1 ring-inset ring-amber-600/20" title="Registro INCES">
+                                            <i data-lucide="book-open-check" class="w-3 h-3 mr-1 text-amber-600"></i> INCES
+                                        </span>` : ''}
+                                    ${hasMppe ? `
+                                        <span class="badge-registry bg-violet-50 text-violet-700 ring-1 ring-inset ring-violet-600/20" title="Registro Ministerio de Educación">
+                                            <i data-lucide="graduation-cap" class="w-3 h-3 mr-1 text-violet-600"></i> MPPE
+                                        </span>` : ''}
                                 </div>
                             </div>
                         </div>
+                        
+                        <!-- Sección de Categorías y Título -->
                         <div class="mb-3">
-                             <span class="text-[10px] font-bold tracking-wider text-brand uppercase bg-brand-light px-2.5 py-1 rounded-md inline-block mb-2">${cat.split(',')[0]}</span>
+                             <div class="flex flex-wrap gap-1.5 mb-2">
+                                ${categoriesHtml}
+                             </div>
+                             
                             <h3 class="font-bold text-gray-900 text-lg leading-snug group-hover:text-brand transition-colors line-clamp-2">${name}</h3>
                             
                             ${rif ? `
@@ -501,11 +578,4 @@
 
     </script>
 </body>
-</html>
-
-        init();
-
-    </script>
-</body>
-
 </html>
