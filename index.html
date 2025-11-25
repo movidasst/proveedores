@@ -337,10 +337,17 @@
                 const loc = escapeHtml(p.estado || "Nacional");
                 const desc = escapeHtml(p.descripcion || "");
                 const rif = escapeHtml(p.rif || "");
-                const contacto = escapeHtml(p.contacto || ""); // Nuevo campo Contacto
+                const contacto = escapeHtml(p.contacto || ""); 
                 const logoUrl = (p.logo && !/^javascript:/i.test(p.logo)) ? p.logo : null;
+                
+                // --- NUEVA LÓGICA DE REGISTROS ---
                 const hasInpsasel = p.registro_inpsasel && String(p.registro_inpsasel).toLowerCase().includes('si');
                 const hasSencamer = p.registro_sencamer && String(p.registro_sencamer).toLowerCase().includes('si');
+                const hasInces = p.registro_inces && String(p.registro_inces).toLowerCase().includes('si'); // Nuevo
+                const hasMppe = p.registro_mppe && String(p.registro_mppe).toLowerCase().includes('si');     // Nuevo
+
+                // Verificar si tiene AL MENOS un registro para mostrar el título "Registrado"
+                const hasAnyRegistry = hasInpsasel || hasSencamer || hasInces || hasMppe;
 
                 const isLongDesc = desc.length > 130;
                 const descId = `desc-${index}`;
@@ -358,10 +365,14 @@
                                 }
                             </div>
                             <div class="flex flex-col items-end pl-2 min-w-[100px]">
-                                ${ (hasInpsasel || hasSencamer) ? `<span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1.5">Registrado</span>` : '' }
+                                ${ hasAnyRegistry ? `<span class="text-[10px] text-gray-400 font-bold uppercase tracking-wider mb-1.5">Registrado</span>` : '' }
                                 <div class="flex flex-col gap-1.5 items-end">
                                     ${hasInpsasel ? `<span class="badge-cert bg-green-50 text-green-700 border border-green-200" title="Registro Inpsasel"><i data-lucide="check-circle-2" class="w-3.5 h-3.5 mr-1 text-green-600"></i> INPSASEL</span>` : ''}
                                     ${hasSencamer ? `<span class="badge-cert bg-blue-50 text-blue-700 border border-blue-200" title="Registro Sencamer"><i data-lucide="badge-check" class="w-3.5 h-3.5 mr-1 text-blue-600"></i> SENCAMER</span>` : ''}
+                                    
+                                    <!-- NUEVOS BADGES -->
+                                    ${hasInces ? `<span class="badge-cert bg-amber-50 text-amber-700 border border-amber-200" title="Registro INCES"><i data-lucide="book-open-check" class="w-3.5 h-3.5 mr-1 text-amber-600"></i> INCES</span>` : ''}
+                                    ${hasMppe ? `<span class="badge-cert bg-violet-50 text-violet-700 border border-violet-200" title="Registro Ministerio de Educación"><i data-lucide="graduation-cap" class="w-3.5 h-3.5 mr-1 text-violet-600"></i> MPPE</span>` : ''}
                                 </div>
                             </div>
                         </div>
@@ -490,4 +501,11 @@
 
     </script>
 </body>
+</html>
+
+        init();
+
+    </script>
+</body>
+
 </html>
